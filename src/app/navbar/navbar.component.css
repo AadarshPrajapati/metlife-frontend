@@ -82,3 +82,8 @@
 .logout-btn:hover {
   background: #d62828;
 }
+a.disabled {
+  pointer-events: none; /* prevent clicking */
+  color: #aaa;          /* greyed out */
+  cursor: not-allowed;
+}

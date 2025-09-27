@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarService, User } from '../navbar.service';
+import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,11 +14,12 @@ import { NavbarService, User } from '../navbar.service';
 })
 export class NavbarComponent implements OnInit {
   menuItems = [
-    { name: 'Dashboard', route: 'dashboard' },
-    { name: 'Policies Overview', route: 'policies' },
-    { name: 'Claim Overview', route: 'claims' },
-    { name: 'Check Health', route: 'checkhealth' }
+    { name: 'Dashboard', route: 'dashboard', disabled: true },
+    { name: 'Policies Overview', route: 'policies', disabled: true },
+    { name: 'Claim Overview', route: 'claims', disabled: true }, // example disabled
+    { name: 'Check Health', route: 'checkhealth', disabled: false }
   ];
+
 
   user: User = {
     user_id: 0,
@@ -29,11 +31,14 @@ export class NavbarComponent implements OnInit {
 
   showProfileDropdown = false;
 
-  constructor(private navbarService: NavbarService, private router: Router) {}
+  constructor(private navbarService: NavbarService, private router: Router, private auth: AuthService) { }
 
   ngOnInit(): void {
-    this.navbarService.getUser().subscribe(data => {
-      this.user = data;
+
+    this.auth.currentUserId$.subscribe(id => {
+      this.navbarService.getUser().subscribe(data => {
+        this.user = data;
+      });
     });
   }
 
@@ -48,9 +53,9 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(event: Event) {
-  event.stopPropagation(); // Prevent dropdown from closing immediately
-  // Clear any user session if you have one
-  // e.g., localStorage.removeItem('token');
-  this.router.navigate(['/']); // redirect to login/homepage
+    event.stopPropagation(); // Prevent dropdown from closing immediately
+    // Clear any user session if you have one
+    // e.g., localStorage.removeItem('token');
+    this.router.navigate(['/']); // redirect to login/homepage
   }
 }

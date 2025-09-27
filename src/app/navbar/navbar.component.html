@@ -1,11 +1,19 @@
 <nav class="navbar">
   <div class="app-name">MetLife</div>
 
-  <ul class="nav-menu">
-    <li *ngFor="let item of menuItems">
-      <a [routerLink]="item.route" routerLinkActive="active">{{ item.name }}</a>
-    </li>
-  </ul>
+<ul class="nav-menu">
+  <li *ngFor="let item of menuItems">
+    <a
+      [routerLink]="item.disabled ? null : item.route"
+      [class.disabled]="item.disabled"
+      [attr.aria-disabled]="item.disabled"
+      routerLinkActive="active"
+    >
+      {{ item.name }}
+    </a>
+  </li>
+</ul>
+
 
   <div class="profile" (click)="toggleProfileDropdown()">
     <img src="../assets/profile-icon.png" alt="Profile Icon" class="profile-icon"/>
