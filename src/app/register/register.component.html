@@ -1,0 +1,97 @@
+<div class="login-wrapper">
+  <header class="login-header">
+    <h1>MetLife</h1>
+  </header>
+
+  <div class="login-card">
+    <h2 class="login-title">Register</h2>
+    <form #registerForm="ngForm" (ngSubmit)="onRegister(registerForm)">
+
+      <!-- Name -->
+      <div class="form-group">
+        <input
+          type="text"
+          name="name"
+          [(ngModel)]="name"
+          placeholder="Full Name"
+          required
+          #nameCtrl="ngModel"
+          [class.invalid]="nameCtrl.invalid && nameCtrl.touched"
+        />
+        <div class="error-msg" *ngIf="nameCtrl.touched && nameCtrl.invalid">
+          Name is required
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Email"
+          required
+          email
+          #emailCtrl="ngModel"
+          [class.invalid]="emailCtrl.invalid && emailCtrl.touched"
+        />
+        <div class="error-msg" *ngIf="emailCtrl.touched && emailCtrl.errors">
+          <span *ngIf="emailCtrl.errors['required']">Email is required</span>
+          <span *ngIf="emailCtrl.errors['email']">Enter a valid email</span>
+        </div>
+      </div>
+
+      <!-- Mobile -->
+      <div class="form-group">
+        <input
+          type="text"
+          name="mobile"
+          [(ngModel)]="mobile"
+          placeholder="Mobile Number"
+          required
+          pattern="^[0-9]{10}$"
+          #mobileCtrl="ngModel"
+          [class.invalid]="mobileCtrl.invalid && mobileCtrl.touched"
+        />
+        <div class="error-msg" *ngIf="mobileCtrl.touched && mobileCtrl.errors">
+          <span *ngIf="mobileCtrl.errors['required']">Mobile number is required</span>
+          <span *ngIf="mobileCtrl.errors['pattern']">Enter a valid 10-digit number</span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Password"
+          required
+          minlength="6"
+          #passwordCtrl="ngModel"
+          [class.invalid]="passwordCtrl.invalid && passwordCtrl.touched"
+        />
+        <div class="checkbox-container">
+          <label>
+            <input type="checkbox" [(ngModel)]="showPassword" name="showPassword"/>
+            Show Password
+          </label>
+        </div>
+        <div class="error-msg" *ngIf="passwordCtrl.touched && passwordCtrl.errors">
+          <span *ngIf="passwordCtrl.errors['required']">Password is required</span>
+          <span *ngIf="passwordCtrl.errors['minlength']">Password must be at least 6 characters</span>
+        </div>
+      </div>
+
+      <button type="submit" class="login-btn" [disabled]="registerForm.invalid">
+        Register
+      </button>
+    </form>
+
+    <!-- Login Link -->
+    <div class="register-link">
+      <span>Already have an account?</span>
+      <a routerLink="/">Login here</a>
+    </div>
+  </div>
+</div>
