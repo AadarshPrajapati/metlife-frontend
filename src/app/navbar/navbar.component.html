@@ -17,6 +17,7 @@
       <p><strong>User ID:</strong> ****{{ user.user_id.toString().slice(-4) }}</p>
       <p><strong>Age:</strong> {{ user.age }}</p>
       <p><strong>Gender:</strong> {{ user.gender }}</p>
+      <button class="logout-btn" (click)="logout($event)">Logout</button>
     </div>
   </div>
 </nav>

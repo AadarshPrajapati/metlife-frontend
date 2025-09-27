@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { NavbarService, User } from '../navbar.service';
 
@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
     { name: 'Dashboard', route: 'dashboard' },
     { name: 'Policies Overview', route: 'policies' },
     { name: 'Claim Overview', route: 'claims' },
-    { name: 'Health Tips & Notifications', route: 'tips' }
+    { name: 'Check Health', route: 'checkhealth' }
   ];
 
   user: User = {
@@ -29,7 +29,7 @@ export class NavbarComponent implements OnInit {
 
   showProfileDropdown = false;
 
-  constructor(private navbarService: NavbarService) {}
+  constructor(private navbarService: NavbarService, private router: Router) {}
 
   ngOnInit(): void {
     this.navbarService.getUser().subscribe(data => {
@@ -45,5 +45,12 @@ export class NavbarComponent implements OnInit {
     const [user, domain] = email.split('@');
     const maskedUser = user[0] + '***' + user.slice(-1);
     return maskedUser + '@' + domain;
+  }
+
+  logout(event: Event) {
+  event.stopPropagation(); // Prevent dropdown from closing immediately
+  // Clear any user session if you have one
+  // e.g., localStorage.removeItem('token');
+  this.router.navigate(['/']); // redirect to login/homepage
   }
 }

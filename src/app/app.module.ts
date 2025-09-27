@@ -10,6 +10,7 @@ import { AppComponent } from './app.component';
 // standalone components
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
+import { CheckHealthComponent } from './checkhealth/checkhealth.component';
 
 @NgModule({
   declarations: [AppComponent],  // ✅ AppComponent is NOT standalone, so declare here
@@ -20,7 +21,8 @@ import { HomeComponent } from './home/home.component';
     RouterModule,        // ✅ required for <router-outlet>
     AppRoutingModule,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    CheckHealthComponent
   ],
   bootstrap: [AppComponent]
 })

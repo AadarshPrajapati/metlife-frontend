@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
+import { CheckHealthComponent } from './checkhealth/checkhealth.component';
 // import { DashboardComponent } from './dashboard/dashboard.component';
 // import { PoliciesComponent } from './policies/policies.component';
 // import { ClaimsComponent } from './claims/claims.component';
@@ -22,7 +23,8 @@ const routes: Routes = [
       // { path: 'dashboard', component: DashboardComponent },
       // { path: 'policies', component: PoliciesComponent },
       // { path: 'claims', component: ClaimsComponent },
-      // { path: 'tips', component: TipsComponent }
+      // { path: 'tips', component: TipsComponent },
+      { path: 'checkhealth', component: CheckHealthComponent } // ✅ Added CheckHealth route
     ]
   },
 

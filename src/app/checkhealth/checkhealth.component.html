@@ -1,0 +1,178 @@
+<div class="login-wrapper">
+  <header class="login-header">
+  </header>
+
+  <div class="login-card">
+    <h2 class="login-title">Health Check Form</h2>
+    <form #healthForm="ngForm" (ngSubmit)="onSubmit(healthForm)" novalidate>
+
+      <!-- Row: Age & Gender -->
+      <div class="form-row">
+        <div class="form-group half-width">
+          <input
+            type="number"
+            name="age"
+            [(ngModel)]="healthData.age"
+            placeholder="Age"
+            required
+            min="1"
+            #ageCtrl="ngModel"
+            [class.invalid]="ageCtrl.invalid && ageCtrl.touched"
+          />
+          <div class="error-msg" *ngIf="ageCtrl.touched && ageCtrl.invalid">
+            <span *ngIf="ageCtrl.errors?.['required']">Age is required</span>
+            <span *ngIf="ageCtrl.errors?.['min']">Age must be greater than 0</span>
+          </div>
+        </div>
+
+        <div class="form-group half-width">
+          <select
+            name="gender"
+            [(ngModel)]="healthData.gender"
+            required
+            #genderCtrl="ngModel"
+            [class.invalid]="genderCtrl.invalid && genderCtrl.touched"
+          >
+            <option value="" disabled>Select Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+          <div class="error-msg" *ngIf="genderCtrl.touched && genderCtrl.invalid">
+            <span *ngIf="genderCtrl.errors?.['required']">Gender is required</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Row: BMI & Daily Steps -->
+      <div class="form-row">
+        <div class="form-group half-width">
+          <input
+            type="number"
+            name="bmi"
+            [(ngModel)]="healthData.bmi"
+            placeholder="BMI"
+            required
+            min="0"
+            #bmiCtrl="ngModel"
+            [class.invalid]="bmiCtrl.invalid && bmiCtrl.touched"
+          />
+          <div class="error-msg" *ngIf="bmiCtrl.touched && bmiCtrl.invalid">
+            <span *ngIf="bmiCtrl.errors?.['required']">BMI is required</span>
+            <span *ngIf="bmiCtrl.errors?.['min']">BMI must be positive</span>
+          </div>
+        </div>
+
+        <div class="form-group half-width">
+          <input
+            type="number"
+            name="daily_steps"
+            [(ngModel)]="healthData.daily_steps"
+            placeholder="Daily Steps"
+            required
+            min="0"
+            #stepsCtrl="ngModel"
+            [class.invalid]="stepsCtrl.invalid && stepsCtrl.touched"
+          />
+          <div class="error-msg" *ngIf="stepsCtrl.touched && stepsCtrl.invalid">
+            <span *ngIf="stepsCtrl.errors?.['required']">Daily steps are required</span>
+            <span *ngIf="stepsCtrl.errors?.['min']">Steps cannot be negative</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Other fields stacked with validation -->
+      <div class="form-group">
+        <input
+          type="number"
+          name="sleep_hours"
+          [(ngModel)]="healthData.sleep_hours"
+          placeholder="Sleep Hours"
+          required
+          min="0"
+          #sleepCtrl="ngModel"
+          [class.invalid]="sleepCtrl.invalid && sleepCtrl.touched"
+        />
+        <div class="error-msg" *ngIf="sleepCtrl.touched && sleepCtrl.invalid">
+          <span *ngIf="sleepCtrl.errors?.['required']">Sleep hours required</span>
+          <span *ngIf="sleepCtrl.errors?.['min']">Cannot be negative</span>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="number"
+          name="water_intake_l"
+          [(ngModel)]="healthData.water_intake_l"
+          placeholder="Water Intake (L)"
+          required
+          min="0"
+          #waterCtrl="ngModel"
+          [class.invalid]="waterCtrl.invalid && waterCtrl.touched"
+        />
+        <div class="error-msg" *ngIf="waterCtrl.touched && waterCtrl.invalid">
+          <span *ngIf="waterCtrl.errors?.['required']">Water intake required</span>
+          <span *ngIf="waterCtrl.errors?.['min']">Cannot be negative</span>
+        </div>
+      </div>
+
+      <!-- Checkbox row -->
+      <div class="form-row">
+        <div class="checkbox-container">
+          <label><input type="checkbox" [(ngModel)]="healthData.is_smoker" name="is_smoker" /> Smoker</label>
+          <label><input type="checkbox" [(ngModel)]="healthData.is_drinker" name="is_drinker" /> Drinker</label>
+        </div>
+      </div>
+
+      <!-- Blood pressure and cholesterol row -->
+      <div class="form-row">
+        <div class="form-group half-width">
+          <input
+            type="number"
+            name="systolic_bp"
+            [(ngModel)]="healthData.systolic_bp"
+            placeholder="Systolic BP"
+            required
+            min="0"
+            #systolicCtrl="ngModel"
+            [class.invalid]="systolicCtrl.invalid && systolicCtrl.touched"
+          />
+          <div class="error-msg" *ngIf="systolicCtrl.touched && systolicCtrl.invalid">
+            <span *ngIf="systolicCtrl.errors?.['required']">Systolic BP required</span>
+            <span *ngIf="systolicCtrl.errors?.['min']">Cannot be negative</span>
+          </div>
+        </div>
+
+        <div class="form-group half-width">
+          <input
+            type="number"
+            name="diastolic_bp"
+            [(ngModel)]="healthData.diastolic_bp"
+            placeholder="Diastolic BP"
+            required
+            min="0"
+            #diastolicCtrl="ngModel"
+            [class.invalid]="diastolicCtrl.invalid && diastolicCtrl.touched"
+          />
+          <div class="error-msg" *ngIf="diastolicCtrl.touched && diastolicCtrl.invalid">
+            <span *ngIf="diastolicCtrl.errors?.['required']">Diastolic BP required</span>
+            <span *ngIf="diastolicCtrl.errors?.['min']">Cannot be negative</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="checkbox-container">
+        <label><input type="checkbox" [(ngModel)]="healthData.any_family_disease_history" name="any_family_disease_history" /> Family Disease History</label>
+      </div>
+
+      <button type="submit" class="login-btn" [disabled]="healthForm.invalid">Submit</button>
+    </form>
+
+    <!-- Report -->
+    <div class="health-report" *ngIf="showReport">
+      <h3>Health Report</h3>
+      <p><strong>Risk Score:</strong> {{ report.risk_score }}</p>
+      <p><strong>Recommendation:</strong> {{ report.recommendation }}</p>
+      <button class="login-btn" (click)="downloadPdf()">Download Report</button>
+    </div>
+  </div>
+</div>
