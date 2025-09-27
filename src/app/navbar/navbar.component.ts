@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   menuItems = [
     { name: 'Dashboard', route: 'dashboard', disabled: true },
     { name: 'Policies Overview', route: 'policies', disabled: true },
-    { name: 'Claim Overview', route: 'claims', disabled: true }, // example disabled
+    { name: 'Coin Points', route: 'coinpoints', disabled: false }, // example disabled
     { name: 'Check Health', route: 'checkhealth', disabled: false }
   ];
 

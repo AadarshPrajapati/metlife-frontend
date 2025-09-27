@@ -1,0 +1,10 @@
+<div class="coin-container">
+  <div *ngFor="let level of levels.slice().reverse()" class="level-row" [ngClass]="level.status">
+    <span class="level-label">Level {{level.levelNumber}}</span>
+    <span class="coin-icon">🪙 +{{level.coins}}</span>
+  </div>
+</div>
+
+<div class="total-points">
+  Total Points: {{totalPoints}}
+</div>

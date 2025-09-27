@@ -1,0 +1,34 @@
+.coin-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px;
+}
+
+.level-row {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #d4edda; /* completed green */
+}
+
+.level-row.pending {
+  background-color: #e0e0e0; /* grey for pending */
+  color: #999;
+}
+
+.level-label {
+  flex: 1;
+}
+
+.coin-icon {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+.total-points {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+}

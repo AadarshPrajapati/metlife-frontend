@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { CheckHealthComponent } from './checkhealth/checkhealth.component';
+import { CoinPointsComponent } from './coinpoints/coinpoints.component';
 
 @NgModule({
   declarations: [AppComponent],  // ✅ AppComponent is NOT standalone, so declare here
@@ -22,7 +23,8 @@ import { CheckHealthComponent } from './checkhealth/checkhealth.component';
     AppRoutingModule,
     LoginComponent,
     HomeComponent,
-    CheckHealthComponent
+    CheckHealthComponent,
+    CoinPointsComponent
   ],
   bootstrap: [AppComponent]
 })
