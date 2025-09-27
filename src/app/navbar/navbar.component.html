@@ -1,0 +1,23 @@
+<nav class="navbar">
+  <div class="app-name">MetLife</div>
+
+  <ul class="nav-menu">
+    <li *ngFor="let item of menuItems">
+      <a [routerLink]="item.route" routerLinkActive="active">{{ item.name }}</a>
+    </li>
+  </ul>
+
+  <div class="profile" (click)="toggleProfileDropdown()">
+    <img src="../assets/profile-icon.png" alt="Profile Icon" class="profile-icon"/>
+    <span class="profile-name">{{ user.name }}</span>
+
+    <!-- Dropdown overlay -->
+    <div class="profile-dropdown" *ngIf="showProfileDropdown">
+      <p><strong>Name:</strong> {{ user.name }}</p>
+      <p><strong>Email:</strong> {{ maskEmail(user.email) }}</p>
+      <p><strong>User ID:</strong> ****{{ user.user_id.toString().slice(-4) }}</p>
+      <p><strong>Age:</strong> {{ user.age }}</p>
+      <p><strong>Gender:</strong> {{ user.gender }}</p>
+    </div>
+  </div>
+</nav>

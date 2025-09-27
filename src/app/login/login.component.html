@@ -1,0 +1,58 @@
+<div class="login-wrapper">
+  <header class="login-header">
+    <h1>MetLife</h1>
+  </header>
+
+  <div class="login-card">
+    <h2 class="login-title">Login</h2>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+      <!-- Email -->
+      <div class="form-group">
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="email"
+          placeholder="Enter your email"
+          required
+          email
+          #emailCtrl="ngModel"
+          [class.invalid]="emailCtrl.invalid && emailCtrl.touched"
+        />
+        <div class="error-msg" *ngIf="emailCtrl.touched && emailCtrl.errors">
+          <span *ngIf="emailCtrl.errors['required']">Email is required</span>
+          <span *ngIf="emailCtrl.errors['email']">Enter a valid email</span>
+        </div>
+      </div>
+
+      <!-- Password -->
+      <div class="form-group">
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          name="password"
+          [(ngModel)]="password"
+          placeholder="Enter your password"
+          required
+          #passwordCtrl="ngModel"
+          [class.invalid]="passwordCtrl.invalid && passwordCtrl.touched"
+        />
+
+        <!-- Checkbox aligned left with label -->
+        <div class="checkbox-container">
+          <label>
+            <input type="checkbox" [(ngModel)]="showPassword" name="showPassword" />
+            Show Password
+          </label>
+        </div>
+
+        <div class="error-msg" *ngIf="passwordCtrl.touched && passwordCtrl.errors">
+          <span *ngIf="passwordCtrl.errors['required']">Password is required</span>
+          <span *ngIf="passwordCtrl.errors['apiError']">{{ passwordCtrl.errors['apiError'] }}</span>
+        </div>
+      </div>
+
+      <button type="submit" class="login-btn" [disabled]="loginForm.invalid">
+        Login
+      </button>
+    </form>
+  </div>
+</div>
